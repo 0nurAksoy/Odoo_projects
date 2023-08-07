@@ -72,7 +72,7 @@
         </field>
     </record>
 
-    <menuitem id="menu_patient_root"
+    <menuitem id="menu_patient"
               name="Patient"
               action="action_hospital_patient"
               parent="menu_patient_master"
