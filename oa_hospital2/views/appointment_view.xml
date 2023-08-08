@@ -9,7 +9,7 @@
                 <field name="patient_id"/>
                 <field name="appointment_time"/>
                 <field name="booking_date"/>
-                <filed name="state"
+                <field name="state"
                        decoration-success="state == 'done'"
                        decoration-info="state == 'draft'"
                        decoration-warning="state == 'in_consultation'"
