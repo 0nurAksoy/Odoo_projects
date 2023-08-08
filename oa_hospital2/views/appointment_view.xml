@@ -47,7 +47,7 @@
                             <button name="action_test" string="Object Button"
                                     help="A message will be printed  in the log!"
                                     confirm="Are you sure to see rainbow?"    type="object" class="oe_highlight"/>
-                            <button name="%(oa_hospital2.action_hospital_patient)" string="Action Button"
+                            <button name="%(oa_hospital2.action_hospital_appointment)" string="Action Button"
                                     help="On clicking this button, you will be redirected to patient records!"
                                     confirm="Are you sure to open the patient action?" type="action" class="oe_highlight"/>
                         </group>
