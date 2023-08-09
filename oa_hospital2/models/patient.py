@@ -11,7 +11,7 @@ class HospitalPatient(models.Model):
     name = fields.Char(string='Name', tracking=True)
     date_of_birth = fields.Date(string='Date of Birth')
     ref = fields.Char(string='Reference', tracking=True, default='OA')
-    age = fields.Integer(string='Age', compute='_compute_age', tracking=True)
+    age = fields.Integer(string="Age", compute='_compute_age', tracking=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string='Gender', tracking=True)
     active = fields.Boolean(string='Active', default=True)
     appointment_id = fields.Many2one(comodel_name='hospital.appointment', string="Appointments")
