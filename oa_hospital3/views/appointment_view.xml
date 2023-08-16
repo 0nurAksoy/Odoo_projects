@@ -99,7 +99,7 @@
                                    options="{'collaborative': true, 'resizable': true, 'codeview': true}"/>
                         </page>
                         <page string="Pharmacy" name="pharmacy">
-                            <field name="pharmacy_line_ids">
+                            <field name="pharmacy_lines_ids">
                                 <tree editable="top">
                                     <field name="product_id"/>
                                     <field name="price_unit"
