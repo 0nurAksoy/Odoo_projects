@@ -26,22 +26,23 @@
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'done'" decoration-info="state == 'draft'"
-                  decoration-warning="state == 'in_consultation'" decoration-danger="state == 'cancel'"
-                  sample="1" multi_edit="1">
-                <field name="patient_id"/>
-                <field name="ref" optional="show"/>
-                <field name="gender" optional="hide"/>
-                <field name="doctor_id" widget="many2one_avatar_user"/>
-                <field name="appointment_time"/>
-                <field name="booking_date" optional="show"/>
-                <field name="activity_ids" widdget="list_activity"/>
-                <field name="state"
-                       decoration-success="state == 'done'"
-                       decoration-info="state == 'draft'"
-                       decoration-warning="state == 'in_consultation'"
-                       decoration-danger="state == 'cancel'"
-                       widget="badge"/>
+            <tree>
+<!--            <tree decoration-success="state == 'done'" decoration-info="state == 'draft'"-->
+<!--                  decoration-warning="state == 'in_consultation'" decoration-danger="state == 'cancel'"-->
+<!--                  sample="1" multi_edit="1">-->
+<!--                <field name="patient_id"/>-->
+<!--                <field name="ref" optional="show"/>-->
+<!--                <field name="gender" optional="hide"/>-->
+<!--                <field name="doctor_id" widget="many2one_avatar_user"/>-->
+<!--                <field name="appointment_time"/>-->
+<!--                <field name="booking_date" optional="show"/>-->
+<!--                <field name="activity_ids" widdget="list_activity"/>-->
+<!--                <field name="state"-->
+<!--                       decoration-success="state == 'done'"-->
+<!--                       decoration-info="state == 'draft'"-->
+<!--                       decoration-warning="state == 'in_consultation'"-->
+<!--                       decoration-danger="state == 'cancel'"-->
+<!--                       widget="badge"/>-->
             </tree>
         </field>
     </record>
