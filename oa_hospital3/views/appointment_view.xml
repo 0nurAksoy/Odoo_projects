@@ -35,7 +35,7 @@
                 <field name="doctor_id" widget="many2one_avatar_user"/>
                 <field name="appointment_time"/>
                 <field name="booking_date" optional="show"/>
-                <field name="activity_ids" widdget="list_activity"/>
+                <field name="activity_ids" widget="list_activity"/>
                 <field name="state"
                        decoration-success="state == 'done'"
                        decoration-info="state == 'draft'"
