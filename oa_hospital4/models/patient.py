@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import date
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class HospitalPatient(models.Model):
@@ -17,16 +18,21 @@ class HospitalPatient(models.Model):
     appointment_id = fields.Many2one(comodel_name='hospital.appointment', string="Appointments")
     image = fields.Image(string="Image")
     tag_ids = fields.Many2many('patient.tag' , string="Tags")
-    appointment_count = fields.Integer(string="Appointment Count")
+    appointment_count = fields.Integer(string="Appointment Count", compute='_compute_appointment_count', store=True)
+    appointment_ids = fields.One2many('hospital.patient', 'patient_id', string="Appointments")
 
 
+    @api.depends('appointment_ids')
+    def _compute_appointment_count(self):
+        for rec in self:
+            rec.appointment_count = self.env['hospital_appointment'].search_count([('patient_id', '=', rec.id)])
 
-    @api.model
-    def create(self, vals):
-        vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
-        return super(HospitalPatient, self).create(vals)
-    # yukarıdaki yaptığımız tanımlamayla 'patient' menüsünde yeni bir hasta kaydı oluşturup,
-    # kaydettiğimizde,(create metodu için) 'ref' alanı otomatik olarak "OA------" olarak doldurulacak
+    @api.constrains('date_of_birth')
+    def _check_date_of_birth(self):
+        for rec in self:
+            if rec.date_of_birth and rec.date_of_birth > fields.Date.today():
+                raise ValidationError(_("The entered date of birth is not acceptable"))
+
 
     def write(self, vals):
         if not self.ref and not vals.get('ref'):

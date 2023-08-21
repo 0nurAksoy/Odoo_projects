@@ -32,7 +32,7 @@
         <field name="target">inline</field>
     </record>
 
-    <menuitem id="menu_technical" name="technical" sequence="110" parent="menu_hospital_root">
+    <menuitem id="menu_technical" name="Technical" sequence="110" parent="menu_hospital_root">
         <menuitem id="menu_playground" name="Play Ground" action="action_playground" sequence="10"/>
     </menuitem>
 
