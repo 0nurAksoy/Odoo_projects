@@ -29,6 +29,10 @@
             <tree decoration-success="state == 'done'" decoration-info="state == 'draft'"
                   decoration-warning="state == 'in_consultation'" decoration-danger="state == 'cancel'"
                   sample="1" multi_edit="1">
+                <header>
+                    <button name="action_in_consultation" string="In Consultation" type="object"/>
+                </header>
+                <field name="name" readonly="1"/>
                 <field name="patient_id"/>
                 <field name="ref" optional="show"/>
                 <field name="gender" optional="hide"/>
@@ -42,6 +46,15 @@
                        decoration-warning="state == 'in_consultation'"
                        decoration-danger="state == 'cancel'"
                        widget="badge"/>
+                <button name="action_done" class="fa fa-check btn-success" type="object"
+                        attrs="{'invisible': [('state', '!=', 'in_consultation')]}"/>
+                <button name="%(oa_hospital4.action_cancel_appointment)d" class="fa fa-times btn-danger"
+                        attrs="{'invisible': [('state', 'not in', ('draft', 'in_consultation'))]}"
+                            type="action"/>
+                <groupby name="patient_id">
+                    <button name="action_test" string="Click Button" type="object" class="oe_highlight"/>
+                    <button name="edit" string="Edit" type="edit"/>
+                </groupby>
             </tree>
         </field>
     </record>

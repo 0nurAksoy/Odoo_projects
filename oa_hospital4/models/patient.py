@@ -17,10 +17,13 @@ class HospitalPatient(models.Model):
     active = fields.Boolean(string='Active', default=True)
     appointment_id = fields.Many2one(comodel_name='hospital.appointment', string="Appointments")
     image = fields.Image(string="Image")
-    tag_ids = fields.Many2many('patient.tag' , string="Tags")
+    tag_ids = fields.Many2many('patient.tag', string="Tags")
     appointment_count = fields.Integer(string="Appointment Count", compute='_compute_appointment_count', store=True)
     appointment_ids = fields.One2many('hospital.patient', 'patient_id', string="Appointments")
-
+    parent = fields.Char(string="Parent")
+    marital_status = fields.Selection([('married', 'Married'), ('single', 'Single'), ], string="Marital Status",
+                                      tracking=True)
+    partner_name = fields.Char(string="Partner Name")
 
     @api.depends('appointment_ids')
     def _compute_appointment_count(self):
@@ -33,11 +36,22 @@ class HospitalPatient(models.Model):
             if rec.date_of_birth and rec.date_of_birth > fields.Date.today():
                 raise ValidationError(_("The entered date of birth is not acceptable"))
 
+    @api.ondelete(at_uninstall=False)
+    def check_appointments(self):
+        for rec in self:
+            if rec.appointment.ids:
+                raise ValidationError(_("You cannot delete a patient with appointments !"))
+
+    @api.model
+    def create(self, vals):
+        vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
+        return super(HospitalPatient, self).create(vals)
 
     def write(self, vals):
         if not self.ref and not vals.get('ref'):
             vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
         return super(HospitalPatient, self).write(vals)
+
     # Patient menüsündeki, herhangi bir kayıt üzerinde değişiklik yapıldığında çalışıyor.
 
     @api.depends('date_of_birth')
@@ -49,6 +63,8 @@ class HospitalPatient(models.Model):
             else:
                 rec.age = 1
 
-
     def name_get(self):
-        return[(record.id, "%s [%s]" % (record.name, record.ref)) for record in self]
+        return [(record.id, "%s [%s]" % (record.name, record.ref)) for record in self]
+
+    def action_test(self):
+        return
