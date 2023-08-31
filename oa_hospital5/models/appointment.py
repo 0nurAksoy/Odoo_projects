@@ -9,8 +9,8 @@ class HospitalAppointment(models.Model):
     _description = "Hospital Appointment"
     _rec_name = 'ref'
 
-    patient_id = fields.Many2one(comodel_name='hospital.patient', string="Patient", ondelete='cascade')
-    gender = fields.Selection(related='patient_id.gender')
+    # patient_id = fields.Many2one(comodel_name='hospital.patient', string="Patient", ondelete='cascade')
+    # gender = fields.Selection(related='patient_id.gender')
     appointment_time = fields.Datetime(string='Appointment Time', default=fields.Datetime.now)
     booking_date = fields.Date(string='Booking Date', default=fields.Date.context_today)
     ref = fields.Char(string='Reference', help="Reference of the patient from patient record.")
@@ -43,9 +43,9 @@ class HospitalAppointment(models.Model):
             raise ValidationError(_("You can delete appointment only in Draft status!"))
         return super(HospitalAppointment).unlink()
 
-    @api.onchange('patient_id')
-    def onchange_patient_id(self):
-        self.ref = self.patient_id.ref
+    # @api.onchange('patient_id')
+    # def onchange_patient_id(self):
+    #     self.ref = self.patient_id.ref
 
     def action_test(self):
         return {
