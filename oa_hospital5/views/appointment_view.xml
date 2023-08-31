@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<!--    <record id="view_hospital_appointment_activity" model="ir.ui.view">-->
-<!--        <field name="name">hospital.appointment.activity</field>-->
-<!--        <field name="model">hospital.appointment</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <activity string="Appointments">-->
-<!--                <field name="patient_id"/>-->
-<!--                <field name="ref"/>-->
-<!--                <templates>-->
-<!--                    <div t-name="activity-box">-->
-<!--                        <img t-att-src="activity_image('hospital.patient','image',record.patient_id.raw_value)"-->
-<!--                             t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value"/>-->
-<!--                        <div>-->
-<!--                            <field name="ref" display="full"/>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </templates>-->
+    <record id="view_hospital_appointment_activity" model="ir.ui.view">
+        <field name="name">hospital.appointment.activity</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <activity string="Appointments">
+                <field name="patient_id"/>
+                <field name="ref"/>
+                <templates>
+                    <div t-name="activity-box">
+                        <img t-att-src="activity_image('hospital.patient','image',record.patient_id.raw_value)"
+                             t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value"/>
+                        <div>
+                            <field name="ref" display="full"/>
+                        </div>
+                    </div>
+                </templates>
 
-<!--            </activity>-->
-<!--        </field>-->
-<!--    </record>-->
+            </activity>
+        </field>
+    </record>
 
-<!--    <record id="view_hospital_appointment_tree" model="ir.ui.view">-->
-<!--        <field name="name">hospital.appointment.tree</field>-->
-<!--        <field name="model">hospital.appointment</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <tree decoration-success="state == 'done'" decoration-info="state == 'draft'"-->
-<!--                  decoration-warning="state == 'in_consultation'" decoration-danger="state == 'cancel'"-->
-<!--                  sample="1" multi_edit="1">-->
-<!--                <header>-->
-<!--                    <button name="action_in_consultation" string="In Consultation" type="object"/>-->
-<!--                </header>-->
-<!--                <field name="name" readonly="1"/>-->
-<!--                <field name="patient_id"/>-->
-<!--                <field name="ref" optional="show"/>-->
-<!--                <field name="gender" optional="hide"/>-->
-<!--                <field name="doctor_id" widget="many2one_avatar_user"/>-->
-<!--                <field name="appointment_time"/>-->
-<!--                <field name="booking_date" optional="show"/>-->
-<!--                <field name="activity_ids" widget="list_activity"/>-->
-<!--                <field name="state"-->
-<!--                       decoration-success="state == 'done'"-->
-<!--                       decoration-info="state == 'draft'"-->
-<!--                       decoration-warning="state == 'in_consultation'"-->
-<!--                       decoration-danger="state == 'cancel'"-->
-<!--                       widget="badge"/>-->
-<!--                <button name="action_done" class="fa fa-check btn-success" type="object"-->
-<!--                        attrs="{'invisible': [('state', '!=', 'in_consultation')]}"/>-->
-<!--                <button name="%(oa_hospital5.action_cancel_appointment)d" class="fa fa-times btn-danger"-->
-<!--                        attrs="{'invisible': [('state', 'not in', ('draft', 'in_consultation'))]}"-->
-<!--                            type="action"/>-->
-<!--                <groupby name="patient_id">-->
-<!--                    <button name="action_test" string="Click Button" type="object" class="oe_highlight"/>-->
-<!--                    <button name="edit" string="Edit" type="edit"/>-->
-<!--                </groupby>-->
-<!--            </tree>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="view_hospital_appointment_tree" model="ir.ui.view">
+        <field name="name">hospital.appointment.tree</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'done'" decoration-info="state == 'draft'"
+                  decoration-warning="state == 'in_consultation'" decoration-danger="state == 'cancel'"
+                  sample="1" multi_edit="1">
+                <header>
+                    <button name="action_in_consultation" string="In Consultation" type="object"/>
+                </header>
+                <field name="name" readonly="1"/>
+                <field name="patient_id"/>
+                <field name="ref" optional="show"/>
+                <field name="gender" optional="hide"/>
+                <field name="doctor_id" widget="many2one_avatar_user"/>
+                <field name="appointment_time"/>
+                <field name="booking_date" optional="show"/>
+                <field name="activity_ids" widget="list_activity"/>
+                <field name="state"
+                       decoration-success="state == 'done'"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'in_consultation'"
+                       decoration-danger="state == 'cancel'"
+                       widget="badge"/>
+                <button name="action_done" class="fa fa-check btn-success" type="object"
+                        attrs="{'invisible': [('state', '!=', 'in_consultation')]}"/>
+                <button name="%(oa_hospital5.action_cancel_appointment)d" class="fa fa-times btn-danger"
+                        attrs="{'invisible': [('state', 'not in', ('draft', 'in_consultation'))]}"
+                            type="action"/>
+                <groupby name="patient_id">
+                    <button name="action_test" string="Click Button" type="object" class="oe_highlight"/>
+                    <button name="edit" string="Edit" type="edit"/>
+                </groupby>
+            </tree>
+        </field>
+    </record>
 
     <record id="view_hospital_appointment_form" model="ir.ui.view">
         <field name="name">hospital.appointment.form</field>
@@ -87,9 +87,9 @@
                     </div>
                     <group>
                         <group>
-<!--                            <field name="patient_id"/>-->
+                            <field name="patient_id"/>
                             <field name="ref"/>
-<!--                            <field name="gender"/>-->
+                            <field name="gender"/>
                             <field name="doctor_id" widget="many2one_avatar"/>
                         </group>
                         <group>
