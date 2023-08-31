@@ -41,7 +41,7 @@
                             <field name="gender" invisible="context.get('hide_gender')"/>
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             <field name="active" invisible="1"/>
-                            <field name="appointment_count"/>
+<!--                            <field name="appointment_count"/>-->
                         </group>
                     </group>
                     <group string="Other Information" name="other_info">
