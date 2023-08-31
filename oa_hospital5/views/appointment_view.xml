@@ -51,10 +51,10 @@
                 <button name="%(oa_hospital5.action_cancel_appointment)d" class="fa fa-times btn-danger"
                         attrs="{'invisible': [('state', 'not in', ('draft', 'in_consultation'))]}"
                             type="action"/>
-                <groupby name="patient_id">
-                    <button name="action_test" string="Click Button" type="object" class="oe_highlight"/>
-                    <button name="edit" string="Edit" type="edit"/>
-                </groupby>
+<!--                <groupby name="patient_id">-->
+<!--                    <button name="action_test" string="Click Button" type="object" class="oe_highlight"/>-->
+<!--                    <button name="edit" string="Edit" type="edit"/>-->
+<!--                </groupby>-->
             </tree>
         </field>
     </record>
