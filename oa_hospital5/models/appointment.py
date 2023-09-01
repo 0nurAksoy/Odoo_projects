@@ -30,18 +30,18 @@ class HospitalAppointment(models.Model):
     hide_sales_price = fields.Boolean(string="Hide Sales Price")
 
 
-    @api.model
-    def create(self, vals):
-        vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
-        return super(HospitalPatient, self).create(vals)
+    # @api.model
+    # def create(self, vals):
+    #     vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
+    #     return super(HospitalPatient, self).create(vals)
 
     # yukarıdaki yaptığımız tanımlamayla 'appointment' menüsünde yeni bir hasta kaydı oluşturup,
     # kaydettiğimizde,(create metodu için) 'ref' alanı otomatik olarak "OA------" olarak doldurulacak
 
-    def unlink(self):
-        if self.state != 'draft':
-            raise ValidationError(_("You can delete appointment only in Draft status!"))
-        return super(HospitalAppointment).unlink()
+    # def unlink(self):
+    #     if self.state != 'draft':
+    #         raise ValidationError(_("You can delete appointment only in Draft status!"))
+    #     return super(HospitalAppointment).unlink()
 
     @api.onchange('patient_id')
     def onchange_patient_id(self):
