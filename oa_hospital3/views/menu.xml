@@ -3,7 +3,7 @@
 
     <menuitem id="menu_hospital_root"
               name="Hospital"
-              web_icon="oa_hospital2,static/description/icon.png"
+              web_icon="oa_hospital3,static/description/icon.png"
               sequence="0"/>
     <menuitem id="menu_patient_master"
               name="Patient Details"
@@ -17,5 +17,10 @@
               name="Configurations"
               parent="menu_hospital_root"
               sequence="30"/>
+    <menuitem id="menu_cancel_appointment"
+              name="Cancellation"
+              parent="menu_appointment_master"
+              action="action_cancel_appointment"
+              sequence="20"/>
 
 </odoo>

@@ -11,7 +11,7 @@
                 <templates>
                     <div t-name="activity-box">
                         <img t-att-src="activity_image('hospital.patient','image',record.patient_id.raw_value)"
-                        t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value"/>
+                             t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value"/>
                         <div>
                             <field name="ref" display="full"/>
                         </div>
@@ -29,6 +29,10 @@
             <tree decoration-success="state == 'done'" decoration-info="state == 'draft'"
                   decoration-warning="state == 'in_consultation'" decoration-danger="state == 'cancel'"
                   sample="1" multi_edit="1">
+                <header>
+                    <button name="action_in_consultation" string="In Consultation" type="object"/>
+                </header>
+                <field name="name" readonly="1"/>
                 <field name="patient_id"/>
                 <field name="ref" optional="show"/>
                 <field name="gender" optional="hide"/>
@@ -42,6 +46,15 @@
                        decoration-warning="state == 'in_consultation'"
                        decoration-danger="state == 'cancel'"
                        widget="badge"/>
+                <button name="action_done" class="fa fa-check btn-success" type="object"
+                        attrs="{'invisible': [('state', '!=', 'in_consultation')]}"/>
+                <button name="%(oa_hospital3.action_cancel_appointment)d" class="fa fa-times btn-danger"
+                        attrs="{'invisible': [('state', 'not in', ('draft', 'in_consultation'))]}"
+                            type="action"/>
+                <groupby name="patient_id">
+                    <button name="action_test" string="Click Button" type="object" class="oe_highlight"/>
+                    <button name="edit" string="Edit" type="edit"/>
+                </groupby>
             </tree>
         </field>
     </record>
@@ -56,8 +69,12 @@
                             type="object" states="draft"/>
                     <button name="action_done" string="Mark as Done" class="oe_highlight" data-hotkey="x" type="object"
                             states="in_consultation"/>
-                    <button name="action_cancel" string="Cancel" data-hotkey="c" type="object"
-                            states="draft,in_consultation"/>
+                    <!-- Direkt olarak iptal eden buton yerine diğer action ile iptal etmeye dönüştürdük. -->
+                    <!--                    <button name="action_cancel" string="Cancel" data-hotkey="c" type="object"-->
+                    <!--                            states="draft,in_consultation"/>-->
+                    <button name="%(oa_hospital3.action_cancel_appointment)d" string="Cancel" data-hotkey="c"
+                            context="{'hide_appointment': 1}"
+                            type="action" states="draft,in_consultation"/>
                     <button name="action_draft" string="Reset to Draft" data-hotkey="v" type="object" states="cancel"/>
                     <field name="state" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
                            statusbar_visible="draft,in_consultation,done"/>
@@ -102,14 +119,14 @@
                                 <tree editable="top">
                                     <field name="product_id"/>
                                     <field name="price_unit"
-                                    attrs="{'column_invisible': [('parent.hide_sales_price','=',True)]}"/>
+                                           attrs="{'column_invisible': [('parent.hide_sales_price','=',True)]}"/>
                                     <field name="qty"/>
                                 </tree>
                                 <form>
                                     <group>
                                         <field name="product_id"/>
                                         <field name="price_unit"
-                                        attrs="{'column_invisible': [('parent.hide_sales_price','=',True)]}"/>
+                                               attrs="{'column_invisible': [('parent.hide_sales_price','=',True)]}"/>
                                         <field name="qty"/>
                                     </group>
                                 </form>
@@ -140,7 +157,7 @@
         <field name="name">Appointments</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hospital.appointment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,activity</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

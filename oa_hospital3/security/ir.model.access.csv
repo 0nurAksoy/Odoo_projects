@@ -3,3 +3,5 @@ access.hospital.patient,access_hospital_patient,oa_hospital3.model_hospital_pati
 access.hospital.appointment,access_hospital_appointment,oa_hospital3.model_hospital_appointment,base.group_user,1,1,1,1
 access.appointment.pharmacy.lines,access_appointment_pharmacy_lines,oa_hospital3.model_appointment_pharmacy_lines,base.group_user,1,1,1,1
 access.patient.tag,access_appointment_patient_tag,oa_hospital3.model_patient_tag,base.group_user,1,1,1,1
+access.cancel.appointment.wizard,access_cancel_appointment_wizard,oa_hospital3.model_cancel_appointment_wizard,base.group_user,1,1,1,1
+access.odoo.playground,access_odoo_playground,oa_hospital3.model_odoo_playground,base.group_user,1,1,1,1
